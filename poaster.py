@@ -11,12 +11,12 @@ from scraper import scrape  # Assuming you have a scrape() function in scraper.p
 load_dotenv()
 
 # Configure DNS resolver for MongoDB
-dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
-dns.resolver.default_resolver.nameservers = ['8.8.8.8']
+#dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
+#dns.resolver.default_resolver.nameservers = ['8.8.8.8']
 
 # MongoDB setup
 client = pymongo.MongoClient(os.getenv('MONGO_DB_ACCESS'))
-mydb = client.Cluster0  # Update with your actual database name
+mydb = client.Cluster0
 mycol = mydb["FOI_results"]
 
 #BlueSky setup
@@ -81,5 +81,3 @@ def post_FOI_results():
             post_to_bluesky(result, curated=True)
 
     return new_results  # Return the list of new results
-
-post_FOI_results()
